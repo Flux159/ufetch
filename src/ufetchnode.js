@@ -1,3 +1,5 @@
+const fetch = require('isomorphic-fetch');
+
 function mergeObjects(mergedOptions, addOptions) {
   for (const o in addOptions) {
     if (addOptions.hasOwnProperty(o)) {
