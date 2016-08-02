@@ -1,0 +1,15 @@
+{
+  "name": "ufetch",
+  "description": "A micro ajax http library based on fetch with a unified api for browsers and nodejs",
+  "version": "1.0.0",
+  "repository": "https://github.com/Flux159/ufetch",
+  "homepage": "http://flux159.github.io/ufetch/",
+  "keywords": [
+    "ajax",
+    "http",
+    "nodejs",
+    "client",
+    "fetch"
+  ],
+  "browser": "./browserindex.js"
+}

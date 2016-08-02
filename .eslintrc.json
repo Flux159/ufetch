@@ -1,0 +1,20 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true
+	},
+	"extends": "airbnb",
+	"parser": "babel-eslint",
+  "rules": {
+    "react/prefer-es6-class": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-no-bind": 0,
+    "react/sort-comp": 0,
+    "no-trailing-spaces": 0,
+    "object-curly-spacing": 0,
+    "no-param-reassign": 0,
+    "arrow-body-style": 0,
+    "no-console": 0
+  }
+}
