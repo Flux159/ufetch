@@ -194,6 +194,6 @@ class Ufetch {
 
 const ufetch = new Ufetch();
 
-export {
+module.exports = {
   ufetch,
 };
