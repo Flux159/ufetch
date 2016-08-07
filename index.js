@@ -1,1 +1,1 @@
-module.exports = exports = require('./src/ufetchnode');
+module.exports = exports = require('./dist/ufetchnode');
