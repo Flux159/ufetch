@@ -4,6 +4,14 @@ A micro ajax http library based on fetch with a unified api for browsers and nod
 
 Similar to [uhttp](https://github.com/Flux159/uhttp), but uses fetch.
 
+# Building
+
+Run the following command to build (after npm install):
+
+```
+npm run build
+```
+
 # TODO
 
 - Automated Testing
