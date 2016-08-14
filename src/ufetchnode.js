@@ -161,7 +161,7 @@ class Ufetch {
    */
   setCookie(cname, cvalue, exdays, secure, domain) {
     const secureStr = secure ? ';secure' : '';
-    const domainStr = domain ? '' : `;Domain: ${domain}`;
+    const domainStr = domain ? '' : `;Domain=${domain}`;
     if (exdays) {
       const d = new Date();
       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -184,7 +184,7 @@ class Ufetch {
    * A function to delete a cookie from the browser
    */
   deleteCookie(name, path, domain) {
-    const domainStr = domain ? '' : `;Domain: ${domain}`;
+    const domainStr = domain ? '' : `;Domain=${domain}`;
     if (path) {
       document.cookie = `${name}=; path=${path}${domainStr}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     } else {
