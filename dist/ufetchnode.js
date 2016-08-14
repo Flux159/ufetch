@@ -204,19 +204,21 @@ var Ufetch = function () {
      * @param cvalue
      * @param exdays
      * @param secure
+     * @param domain
      */
 
   }, {
     key: 'setCookie',
-    value: function setCookie(cname, cvalue, exdays, secure) {
+    value: function setCookie(cname, cvalue, exdays, secure, domain) {
       var secureStr = secure ? ';secure' : '';
+      var domainStr = domain ? ';Domain=' + domain : '';
       if (exdays) {
         var d = new Date();
         d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
         var expires = 'expires=' + d.toUTCString();
-        document.cookie = cname + '=' + cvalue + '; ' + expires + '; path=/' + secureStr;
+        document.cookie = cname + '=' + cvalue + '; ' + expires + '; path=/' + domainStr + secureStr;
       } else {
-        document.cookie = cname + '=' + cvalue + '; path=/' + secureStr;
+        document.cookie = cname + '=' + cvalue + '; path=/' + domainStr + secureStr;
       }
     }
 
@@ -237,11 +239,12 @@ var Ufetch = function () {
 
   }, {
     key: 'deleteCookie',
-    value: function deleteCookie(name, path) {
+    value: function deleteCookie(name, path, domain) {
+      var domainStr = domain ? ';Domain=' + domain : '';
       if (path) {
-        document.cookie = name + '=; path=' + path + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = name + '=; path=' + path + domainStr + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       } else {
-        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = name + '=' + domainStr + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       }
     }
   }]);
