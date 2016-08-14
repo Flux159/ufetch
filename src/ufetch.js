@@ -159,16 +159,18 @@ class Ufetch {
    * @param cvalue
    * @param exdays
    * @param secure
+   * @param domain
    */
-  setCookie(cname, cvalue, exdays, secure) {
+  setCookie(cname, cvalue, exdays, secure, domain) {
     const secureStr = secure ? ';secure' : '';
+    const domainStr = domain ? '' : `;Domain: ${domain}`;
     if (exdays) {
       const d = new Date();
       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
       const expires = `expires=${d.toUTCString()}`;
-      document.cookie = `${cname}=${cvalue}; ${expires}; path=/${secureStr}`;
+      document.cookie = `${cname}=${cvalue}; ${expires}; path=/${domainStr}${secureStr}`;
     } else {
-      document.cookie = `${cname}=${cvalue}; path=/${secureStr}`;
+      document.cookie = `${cname}=${cvalue}; path=/${domainStr}${secureStr}`;
     }
   }
  
@@ -183,11 +185,12 @@ class Ufetch {
   /**
    * A function to delete a cookie from the browser
    */
-  deleteCookie(name, path) {
+  deleteCookie(name, path, domain) {
+    const domainStr = domain ? '' : `;Domain: ${domain}`;
     if (path) {
-      document.cookie = `${name}=; path=${path}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+      document.cookie = `${name}=; path=${path}${domainStr}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     } else {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+      document.cookie = `${name}=${domainStr}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     }
   } 
 }
