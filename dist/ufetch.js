@@ -148,8 +148,8 @@ var Ufetch = function () {
     }
   }, {
     key: 'delete',
-    value: function _delete(url, options) {
-      return this.req('DELETE', url, options);
+    value: function _delete(url, options, data) {
+      return this.dataReq('DELETE', url, options, data);
     }
   }, {
     key: 'post',

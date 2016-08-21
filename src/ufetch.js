@@ -113,8 +113,8 @@ class Ufetch {
     return this.req('HEAD', url, options);
   }
   
-  delete(url, options) {
-    return this.req('DELETE', url, options);
+  delete(url, options, data) {
+    return this.dataReq('DELETE', url, options, data);
   }
   
   post(url, options, data) {
