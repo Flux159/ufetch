@@ -64,9 +64,11 @@ class Ufetch {
     mergedOptions.method = method;
     
     return fetch(url, mergedOptions).then((res) => { // eslint-disable-line consistent-return
-      if (res.ok) {
+      if (res.ok && res.status < 400) {
         return res.json();
       }
+
+      throw new Error(res);
     });
   }
   
@@ -93,7 +95,7 @@ class Ufetch {
     }
     
     return fetch(url, mergedOptions, data).then((res) => { // eslint-disable-line consistent-return
-      if (res.ok) {
+      if (res.ok && res.status < 400) {
         return res.json(); 
       }
       

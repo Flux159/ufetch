@@ -97,9 +97,11 @@ var Ufetch = function () {
 
       return fetch(url, mergedOptions).then(function (res) {
         // eslint-disable-line consistent-return
-        if (res.ok) {
+        if (res.ok && res.status < 400) {
           return res.json();
         }
+
+        throw new Error(res);
       });
     }
   }, {
@@ -130,7 +132,7 @@ var Ufetch = function () {
 
       return fetch(url, mergedOptions, data).then(function (res) {
         // eslint-disable-line consistent-return
-        if (res.ok) {
+        if (res.ok && res.status < 400) {
           return res.json();
         }
 
