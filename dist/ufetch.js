@@ -4,6 +4,10 @@ var _stringify = require('babel-runtime/core-js/json/stringify');
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -94,11 +98,9 @@ var Ufetch = function () {
 
       return fetch(url, mergedOptions).then(function (res) {
         // eslint-disable-line consistent-return
-        if (res.ok && res.status < 400) {
-          return res.json();
-        }
-
-        throw new Error(res);
+        return res.json().then(function (json) {
+          return res.ok && res.status < 400 ? json : _promise2.default.reject(json);
+        });
       });
     }
   }, {
@@ -129,11 +131,9 @@ var Ufetch = function () {
 
       return fetch(url, mergedOptions, data).then(function (res) {
         // eslint-disable-line consistent-return
-        if (res.ok && res.status < 400) {
-          return res.json();
-        }
-
-        throw new Error(res);
+        return res.json().then(function (json) {
+          return res.ok && res.status < 400 ? json : _promise2.default.reject(json);
+        });
       });
     }
   }, {
