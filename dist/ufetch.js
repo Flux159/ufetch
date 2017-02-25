@@ -1,26 +1,10 @@
 'use strict';
 
-var _stringify = require('babel-runtime/core-js/json/stringify');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _stringify2 = _interopRequireDefault(_stringify);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _promise = require('babel-runtime/core-js/promise');
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var fetch = require('isomorphic-fetch');
 
@@ -35,7 +19,7 @@ function mergeObjects(mergedOptions, addOptions) {
 }
 
 function isObject(obj) {
-  return obj !== null && (typeof obj === 'undefined' ? 'undefined' : (0, _typeof3.default)(obj)) === 'object';
+  return obj !== null && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object';
 }
 
 function isFile(obj) {
@@ -57,7 +41,7 @@ function isFormData(obj) {
 
 var Ufetch = function () {
   function Ufetch() {
-    (0, _classCallCheck3.default)(this, Ufetch);
+    _classCallCheck(this, Ufetch);
 
     this.defaultOptions = {
       headers: {
@@ -67,7 +51,7 @@ var Ufetch = function () {
     this.globalOptions = {};
   }
 
-  (0, _createClass3.default)(Ufetch, [{
+  _createClass(Ufetch, [{
     key: 'mergeOptions',
     value: function mergeOptions(options) {
       var finalOptions = {};
@@ -99,7 +83,7 @@ var Ufetch = function () {
       return fetch(url, mergedOptions).then(function (res) {
         // eslint-disable-line consistent-return
         return res.json().then(function (json) {
-          return res.ok && res.status < 400 ? json : _promise2.default.reject(json);
+          return res.ok && res.status < 400 ? json : Promise.reject(json);
         });
       });
     }
@@ -107,7 +91,7 @@ var Ufetch = function () {
     key: 'transformRequestData',
     value: function transformRequestData(d) {
       if (isObject(d) && !isFile(d) && !isBlob(d) && !isFormData(d)) {
-        return (0, _stringify2.default)(d);
+        return JSON.stringify(d);
       } else {
         // eslint-disable-line no-else-return
         return d;
@@ -132,7 +116,7 @@ var Ufetch = function () {
       return fetch(url, mergedOptions, data).then(function (res) {
         // eslint-disable-line consistent-return
         return res.json().then(function (json) {
-          return res.ok && res.status < 400 ? json : _promise2.default.reject(json);
+          return res.ok && res.status < 400 ? json : Promise.reject(json);
         });
       });
     }
@@ -247,6 +231,7 @@ var Ufetch = function () {
       }
     }
   }]);
+
   return Ufetch;
 }();
 
